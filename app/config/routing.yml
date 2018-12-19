@@ -1,0 +1,19 @@
+
+home_page:
+    path:      /
+    defaults:  { _controller: AppBundle:Default:index }
+
+new_post:
+    path:      /new
+    defaults:  { _controller: AppBundle:Default:save }
+
+show_post:
+    path:      /show/{id}
+    defaults:  { _controller: AppBundle:Default:show }
+
+home_category:
+    path:      /category/
+    defaults:  { _controller: AppBundle:Category:index }
+new_category:
+    path:      /category/new
+    defaults:  { _controller: AppBundle:Category:save }

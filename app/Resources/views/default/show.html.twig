@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>{{ post.title }}</h3>
+    <h5>Ingredients:</h5>
+    <p>{{ post.content }}</p>
+    {% for comment in post.comments %}
+        <p>{{ comment.content }}</p>
+    {% endfor %}
+    {{ form(form) }}
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
