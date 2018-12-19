@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
+
+    <a href="{{ path('home_category') }}">Manage Categories</a>
     <h1>Welcome to Recipes</h1>
+    <a href="{{ path('new_post') }}">New Recipe</a>
     {% for post in posts %}
         <h3>{{ post.title }}</h3>
         <h5>Ingredients:</h5>
         <p>{{ post.content }}</p>
+        <a href="{{ path('show_post', {'id': post.id}) }}">Read more</a>
     {% endfor %}
 {% endblock %}
 

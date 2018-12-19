@@ -2,5 +2,9 @@
 
 {% block body %}
 <h1>Welcome to the Category</h1>
-{{ dump(categories) }}
+<ul>
+    {% for category in categories %}
+        <li>{{ category.name }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}

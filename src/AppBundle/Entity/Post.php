@@ -53,6 +53,12 @@ class Post
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
      */
     private $comments;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     public function __construct() {
         // $this->comments = new ArrayCollection();
@@ -172,6 +178,30 @@ class Post
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * 
+     * @return Post
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
 }

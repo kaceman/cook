@@ -48,6 +48,9 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post = $form->getData();
+            $user = $this->getUser();
+
+            $post->setUser($user);
             $post->setDateCreation(new \DateTime());
 
             $em = $this->getDoctrine()->getManager();
@@ -78,9 +81,9 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
+            $user = $this->getUser();
 
-
-
+            $comment->setUser($user);
             $comment->setPost($post);
             $comment->setDateCreation(new \DateTime());
 

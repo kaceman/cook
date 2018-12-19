@@ -40,6 +40,12 @@ class Comment
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
     private $post;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * Get id
@@ -121,6 +127,30 @@ class Comment
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * 
+     * @return Post
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
 

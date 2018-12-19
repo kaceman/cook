@@ -5,6 +5,7 @@
     <h5>Ingredients:</h5>
     <p>{{ post.content }}</p>
     {% for comment in post.comments %}
+        <p>{{ comment.user.username }}</p>
         <p>{{ comment.content }}</p>
     {% endfor %}
     {{ form(form) }}
