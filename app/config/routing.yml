@@ -2,9 +2,16 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+homepage:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path: /recipe/all
+
 home_page:
-    path:      /
+    path:      /recipe/{name}
     defaults:  { _controller: AppBundle:Default:index }
+    defaults:   { name: 'all' }
 
 new_post:
     path:      /new

@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto'; }
+
+.wrapper {
+  display: grid;
+  width: 100%;
+  grid-template-areas: "header header header" "content content sidebar" "footer footer footer";
+  grid-template-columns: 2fr 2fr 1fr; }
+  .wrapper .aside {
+    padding: 16px;
+    grid-area: sidebar; }
+  .wrapper .section {
+    padding: 16px;
+    grid-area: content; }
+  .wrapper .footer {
+    color: #eee;
+    text-align: center;
+    background-color: #333;
+    grid-area: footer; }
+  .wrapper .header {
+    grid-area: header; }
+    .wrapper .header h1 {
+      text-align: center; }
+    .wrapper .header nav ul {
+      background-color: #333;
+      width: 100%;
+      display: inline-block; }
+      .wrapper .header nav ul li {
+        list-style-type: none;
+        float: left;
+        width: 150px;
+        height: 50px;
+        cursor: pointer;
+        text-align: center; }
+        .wrapper .header nav ul li a {
+          line-height: 50px;
+          color: #eee;
+          text-decoration: none; }
+        .wrapper .header nav ul li.active {
+          background: #eee; }
+          .wrapper .header nav ul li.active a {
+            color: #333; }
+
+.btn {
+  text-decoration: none;
+  display: block;
+  width: 120px;
+  padding: 10px;
+  background: #333;
+  color: #eee;
+  text-align: center; }
+
+em {
+  font-size: 10px; }
+
+.comment {
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 0 20px; }
+  .comment div {
+    position: relative; }
+    .comment div img {
+      width: 50px;
+      display: block;
+      float: left; }
+    .comment div p {
+      position: relative;
+      left: 20px;
+      line-height: 50px; }

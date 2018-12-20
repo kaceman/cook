@@ -13,13 +13,27 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction($name)
     {
         $repository = $this->getDoctrine()->getRepository(Post::class);
-        $posts = $repository->findAll();
+        $posts = array();
+
+        if (!$name) {
+            return $this->redirectToRoute('home_page');
+        }
+
+        if ($name === 'all') {
+            $posts = $repository->findAll();
+        } else {
+            $posts = $repository->findAllByCategory($name);
+        }
+
+        $repository = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $repository->findAll();
 
         return $this->render('default/index.html.twig', array(
-            'posts' => $posts
+            'posts' => $posts,
+            'categories' => $categories
         ));
     }
 
@@ -61,12 +75,16 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/new.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'categories' => $categories
         ));
     }
     
     public function showAction($id, Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $repository->findAll();
+
         $repository = $this->getDoctrine()->getRepository(Post::class);
         $post = $repository->find($id);
 
@@ -96,7 +114,8 @@ class DefaultController extends Controller
 
         return $this->render('default/show.html.twig', array(
             'form' => $form->createView(),
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ));
     }
 }

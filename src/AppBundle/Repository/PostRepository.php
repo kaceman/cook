@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * PostRepository
@@ -10,4 +11,35 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findAllByCategory($name)
+    {
+        $repository = $this->getEntityManager()->getRepository('AppBundle:Category');
+
+        $category = null;
+
+        $query = $repository->createQueryBuilder('c')
+            ->where('c.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery();
+
+        try {
+            $category = $query->setMaxResults(1)->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+        }
+
+        $posts = array();
+
+        if ($category) {
+            $query = $this->createQueryBuilder('p')
+                ->where('p.category = :category')
+                ->setParameter('category', $category)
+                ->getQuery();
+
+            $posts = $query->getResult();
+        }
+
+        return $posts;
+    }
+
 }
